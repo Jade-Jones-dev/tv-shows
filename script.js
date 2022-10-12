@@ -57,6 +57,9 @@ searchInput.addEventListener("input", e => {
   console.log(value)
 })
 
+// next steps finding how to do the search function
+// create a dynamic search feature
+
 
 
 
