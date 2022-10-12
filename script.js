@@ -7,11 +7,10 @@ function setup() {
 // for episode of allEpisodes
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
-  //rootElem.textContent = `Got ${episodeList.length} episode(s)`;
+rootElem.textContent = `Got ${episodeList.length} episode(s)`;
 
-// what do I need to do?
 
- // episodeList for each episode
+// creating initial elements for episodes
 episodeList.forEach(episode => {
   let cardEl = document.createElement('div');
   let titleEl = document.createElement('h2');
@@ -19,6 +18,8 @@ episodeList.forEach(episode => {
   let summaryEl = document.createElement('div');
   let seasonNumber
   let episodeNumber
+
+ //adding 0 to episode and season numbers
 
     if (episode.season < 10) {
       seasonNumber = `0${episode.season}`
@@ -49,6 +50,7 @@ episodeList.forEach(episode => {
 
 }
 
+// event listener for search input
 const searchInput = document.querySelector('[data-search]')
 searchInput.addEventListener("input", e => {
   const value = e.target.value
