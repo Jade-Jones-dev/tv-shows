@@ -12,25 +12,14 @@ function makePageForEpisodes(episodeList) {
 
 //fixing search element issue
 const searchFunctionEl = document.querySelector(".search-functions")
-const episodesList = document.querySelector(".episodes-page");
+const episodesList = document.getElementById("episodes");
 rootElem.append(searchFunctionEl, episodesList)
 
-
-//search
-let input = document.createElement("input");
-input.type = "search";
-input.className ="search-episodes";
-input.placeholder = "search episodes";
-let searchResults = document.createElement("p");
-searchResults.id = "search-results";
-
-searchFunctionEl.append(input, searchResults);
-
-
-
-
-// need to add an event listener, can i add class list like on my card project??
-
+let inputEl = document.getElementById("searchInput");
+inputEl.addEventListener('input', searchForEpisodes)
+let searchResults = document.createElement('p')
+searchFunctionEl.append(inputEl, searchResults)
+searchResults.innerText = `Got ${episodeList.length} episode(s)`;
 
 
 
@@ -74,7 +63,19 @@ episodeList.forEach(episode => {
 
 }
 
-
+function searchForEpisodes() {
+	const searchInput = document.getElementById("searchInput").value;
+	const allEpisodes = getAllEpisodes();
+	const filteredEpisode = allEpisodes.filter((episode) => {
+		return (
+			episode.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+			episode.summary.toLowerCase().includes(searchInput.toLowerCase())
+		);
+	});
+	const episodeResults = document.getElementById("episodes");
+	episodeResults.innerHTML = "";
+	makePageForEpisodes(filteredEpisode);
+}
 
 
 
