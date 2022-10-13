@@ -1,4 +1,5 @@
 //You can edit ALL of the code here
+let allEpisodes = [];
 function setup() {
   const allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes);
@@ -7,7 +8,30 @@ function setup() {
 // for episode of allEpisodes
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
-rootElem.textContent = `Got ${episodeList.length} episode(s)`;
+ //rootElem.textContent = `Got ${episodeList.length} episode(s)`;
+
+//fixing search element issue
+const searchFunctionEl = document.querySelector(".search-functions")
+const episodesList = document.querySelector(".episodes-page");
+rootElem.append(searchFunctionEl, episodesList)
+
+
+//search
+let input = document.createElement("input");
+input.type = "search";
+input.className ="search-episodes";
+input.placeholder = "search episodes";
+let searchResults = document.createElement("p");
+searchResults.id = "search-results";
+
+searchFunctionEl.append(input, searchResults);
+
+
+
+
+// need to add an event listener, can i add class list like on my card project??
+
+
 
 
 // creating initial elements for episodes
@@ -45,17 +69,18 @@ episodeList.forEach(episode => {
 
   // use append rather than append child so that you can do multiple elemnts t once
   cardEl.append(titleEl, imageEl, summaryEl);
-  rootElem.append(cardEl);
+  episodesList.append(cardEl);
 }) 
 
 }
 
-// event listener for search input
-const searchInput = document.querySelector('[data-search]')
-searchInput.addEventListener("input", e => {
-  const value = e.target.value
-  console.log(value)
-})
+
+
+
+
+
+
+
 
 // next steps finding how to do the search function
 // create a dynamic search feature
