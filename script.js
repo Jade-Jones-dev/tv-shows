@@ -20,17 +20,20 @@ inputEl.addEventListener('input', searchForEpisodes)
 let searchResults = document.createElement('p')
 
 
-  let selectElement = document.createElement("select");
-  selectElement.className = 'select'
-	let optionElement = document.createElement("option");
-  searchFunctionEl.append(selectElement);
-  selectElement.innerHTML = "search for a show";
-  //why is the text not showing up?? this suggests it is not working properly
+let selectElement = document.getElementById("select");
+selectElement.textContent = "";
 
-  optionElement
+  //create option element and append
+
+let optionElement = document.createElement("option");
+optionElement.className = "option";
+selectElement.append(optionElement);
+  
+  
 
 
-//episodeList.forEach((episode) => {select.add(new Option(titleEl = `${episode.name} S${seasonNumber}E${episodeNumber}`))})
+
+//episodeList.forEach((episode) => {select.add(new Option(optionElement = `${episode.name} S${seasonNumber}E${episodeNumber}`))})
 
 searchFunctionEl.append(searchResults)
 
