@@ -1,9 +1,16 @@
 #episodes {
   display: grid;
   gap: 1em;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   margin: 1.5rem;
   text-align: center;
+  
+}
+
+#root{
+  background-color: #f2f2f2;
+  padding: 10px;
+
 }
 
 .search-functions{
@@ -14,14 +21,36 @@
   margin-left: -10px;
   margin-right: -10px;
   margin-top: -10px;
+  padding-bottom: 20px;
 }
 
 .card{
   margin: 10px;
+  background-color: white;
   border: 2px solid grey;
   border-radius: 15px;
-  padding: 10px;
+  box-shadow: 0 5px 15px 5px rgb(0 0 0 / 0.4);
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.card img{
+  width:100%;
+  border-radius: 15px 15px 0 0;
+  margin-top: -2px;
+  margin-bottom: -10px;
+}
+
+.card p{
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: -5px;
+}
+
+
+
+
+.select{
+  width:200px;
 }
 
 

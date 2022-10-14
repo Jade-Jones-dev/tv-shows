@@ -40,8 +40,9 @@ searchResults.innerHTML = `Got ${episodeList.length} episode(s)`;
 // creating initial elements for episodes
 episodeList.forEach(episode => {
   let cardEl = document.createElement('div');
+  let imageEl = document.createElement("img");
   let titleEl = document.createElement('h2');
-  let imageEl = document.createElement('img');
+
   let summaryEl = document.createElement('div');
   let seasonNumber
   let episodeNumber
@@ -71,7 +72,7 @@ episodeList.forEach(episode => {
   summaryEl.innerHTML = episode.summary;
 
   // use append rather than append child so that you can do multiple elemnts t once
-  cardEl.append(titleEl, imageEl, summaryEl);
+  cardEl.append(imageEl, titleEl, summaryEl);
   episodesList.append(cardEl);
 }) 
 
