@@ -18,10 +18,24 @@ rootElem.append(searchFunctionEl, episodesList)
 let inputEl = document.getElementById("searchInput");
 inputEl.addEventListener('input', searchForEpisodes)
 let searchResults = document.createElement('p')
-searchFunctionEl.append(inputEl, searchResults)
-searchResults.innerText = `Got ${episodeList.length} episode(s)`;
 
 
+  let selectElement = document.createElement("select");
+  selectElement.className = 'select'
+	let optionElement = document.createElement("option");
+  searchFunctionEl.append(selectElement);
+  selectElement.innerHTML = "search for a show";
+  //why is the text not showing up?? this suggests it is not working properly
+
+  optionElement
+
+
+//episodeList.forEach((episode) => {select.add(new Option(titleEl = `${episode.name} S${seasonNumber}E${episodeNumber}`))})
+
+searchFunctionEl.append(searchResults)
+
+// need to fix this so it clears after next input
+searchResults.innerHTML = `Got ${episodeList.length} episode(s)`;
 
 // creating initial elements for episodes
 episodeList.forEach(episode => {
@@ -75,11 +89,13 @@ function searchForEpisodes() {
 	const episodeResults = document.getElementById("episodes");
 	episodeResults.innerHTML = "";
 	makePageForEpisodes(filteredEpisode);
+  searchResults.innerHTML = `Got ${episodeList.length} episode(s)`;
 }
 
-
-
-
+// create the function
+// create an option
+// set the text
+// append the options
 
 
 
