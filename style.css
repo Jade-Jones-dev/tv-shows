@@ -41,7 +41,7 @@ h1{
   padding: 20px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   margin: -10px;
 
@@ -84,6 +84,7 @@ h1{
 }
 
 .title{
+  padding-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
 }
@@ -108,11 +109,8 @@ h1{
   margin-top: -5px;
 }
 
-
-
-
-.select{
-  width:200px;
+#episodeDropdown{
+  width:300px;
 }
 
 
