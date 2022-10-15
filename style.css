@@ -15,20 +15,29 @@
 }
 
 header{
-  background-color: #48494E;
+  background-color: black;
   color: white;
-  height: 150px;
-  margin: -10px;
+  height: 160px;
+  margin: -40px;
 }
-#797b84;
+
 footer{
-  background-color: #48494E;
+  background-color: black;
   color: white;
   height: 150px;
 }
 
+h1{
+  padding-top: 30px;
+  padding-left: 70px;
+  font-size: 60px;
+  letter-spacing: 5px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
 .main-content{
-  background-color: #f2f2f2;
+  background-color: black;
+  color:white;
   padding: 20px;
   display: flex;
   flex-direction: row;
@@ -67,16 +76,21 @@ footer{
   display: flex;
   flex-direction: column;
   margin: 10px;
-  background-color: white;
-  border: 2px solid grey;
+  background-color: black;
+  color: white;
   border-radius: 15px;
-  box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 20px 10px rgba(0, 0, 0, 0.5);
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .title{
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.season{
+  margin-top: -10px;
+  font-size: 22px;
 }
 
 .card img{
@@ -89,8 +103,8 @@ footer{
 }
 
 .card p{
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
   margin-top: -5px;
 }
 

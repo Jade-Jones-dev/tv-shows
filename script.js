@@ -20,11 +20,12 @@ function setup() {
 
 function makePageForEpisodes(episodeList) {
 	const rootElem = document.getElementById("root");
-	rootElem.textContent = `Got ${episodeList.length} episode(s)`;
+	rootElem.textContent = ` ${episodeList.length} episode(s)`;
 	episodeList.forEach((episode) => {
 		let cardEl = document.createElement("div");
 		let imageEl = document.createElement("img");
 		let titleEl = document.createElement("h2");
+    let seasonEl = document.createElement("h3")
 		let summaryEl = document.createElement("div");
 		//let seasonNumber moved outside so I can use in dropdown;
 		//let episodeNumber moved outside so I can use in dropdwon;
@@ -44,13 +45,15 @@ function makePageForEpisodes(episodeList) {
 
 		cardEl.className = "card";
 		titleEl.className = "title";
+    seasonEl.className = "season";
 		imageEl.className = "img";
 		summaryEl.className = "summary";
-    titleEl.innerText = `${episode.name} S${seasonNumber}E${episodeNumber}`;
+    titleEl.innerText = `${episode.name}`;
+    seasonEl.innerText = `S${seasonNumber}E${episodeNumber}`;
 		imageEl.setAttribute("src", episode.image.original);
 		summaryEl.innerHTML = episode.summary;
 
-		cardEl.append(imageEl, titleEl, summaryEl);
+		cardEl.append(imageEl, titleEl, seasonEl, summaryEl);
 		episodesList.append(cardEl);
 	});
   dropDownMenu(episodeList); 
