@@ -7,6 +7,9 @@ const episodesList = document.getElementById("episodes");
 const episodeDropdown = document.getElementById("episodeDropdown");
 let seasonNumber;
 let episodeNumber;
+let url = "https://api.tvmaze.com/shows/82/episodes";
+
+//how do I switch from obj to live data?
 
 // initial functions
 function setup() {
