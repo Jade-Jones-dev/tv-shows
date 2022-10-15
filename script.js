@@ -5,6 +5,8 @@ const rootElem = document.getElementById("root");
 const searchFunctionEl = document.getElementById("search-functions");
 const episodesList = document.getElementById("episodes");
 const episodeDropdown = document.getElementById("episodeDropdown");
+let seasonNumber;
+let episodeNumber;
 
 // initial functions
 function setup() {
@@ -21,8 +23,8 @@ function makePageForEpisodes(episodeList) {
 		let imageEl = document.createElement("img");
 		let titleEl = document.createElement("h2");
 		let summaryEl = document.createElement("div");
-		let seasonNumber;
-		let episodeNumber;
+		//let seasonNumber moved outside so I can use in dropdown;
+		//let episodeNumber moved outside so I can use in dropdwon;
 
 		//adding 0 to episode and season numbers
 		if (episode.season < 10) {
@@ -47,7 +49,8 @@ function makePageForEpisodes(episodeList) {
 
 		cardEl.append(imageEl, titleEl, summaryEl);
 		episodesList.append(cardEl);
-	});  
+	});
+  dropDownMenu(episodeList); 
 }
 
 //adding event listener to search box
@@ -68,6 +71,29 @@ function searchShows() {
 }
 
 // creating dropdown
+function dropDownMenu(episodeList){
+  episodeList.forEach((episode) =>{
+		let optionEl = document.createElement("option");
+		//adding 0 to episode and season numbers
+		if (episode.season < 10) {
+			seasonNumber = `0${episode.season}`;
+		} else {
+			seasonNumber = episode.season;
+		}
+		if (episode.number < 10) {
+			episodeNumber = `0${episode.number}`;
+		} else {
+			episodeNumber = episode.number;
+		}
+		optionEl.innerHTML = `${episode.name} ${seasonNumber} ${episodeNumber}`;
+		episodeDropdown.append(optionEl);
+	})
+}
+
+// next episode selector
+
+
+
 
 
 
