@@ -5,16 +5,26 @@
   gap: 1em;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   margin: 1.5rem;
-  text-align: center;
-  
+  text-align: center;  
 }
-
-
 
 #root{
   font-size: 20px;
   padding-left: 20px;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+header{
+  background-color: #48494E;
+  color: white;
+  height: 150px;
+  margin: -10px;
+}
+#797b84;
+footer{
+  background-color: #48494E;
+  color: white;
+  height: 150px;
 }
 
 .main-content{
@@ -60,7 +70,7 @@
   background-color: white;
   border: 2px solid grey;
   border-radius: 15px;
-  box-shadow: 0 5px 15px 5px rgb(0 0 0 / 0.4);
+  box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.4);
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 

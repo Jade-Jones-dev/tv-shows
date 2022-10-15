@@ -47,7 +47,7 @@ function makePageForEpisodes(episodeList) {
 		imageEl.className = "img";
 		summaryEl.className = "summary";
     titleEl.innerText = `${episode.name} S${seasonNumber}E${episodeNumber}`;
-		imageEl.setAttribute("src", episode.image.medium);
+		imageEl.setAttribute("src", episode.image.original);
 		summaryEl.innerHTML = episode.summary;
 
 		cardEl.append(imageEl, titleEl, summaryEl);
@@ -93,6 +93,8 @@ function dropDownMenu(episodeList){
 	})
   
 }
+
+
 
 
 
