@@ -85,10 +85,13 @@ function dropDownMenu(episodeList){
 		} else {
 			episodeNumber = episode.number;
 		}
-		optionEl.innerHTML = `${episode.name} ${seasonNumber} ${episodeNumber}`;
+		optionEl.innerHTML = `${episode.name} S${seasonNumber}E${episodeNumber} `;
 		episodeDropdown.append(optionEl);
 	})
+  
 }
+
+
 
 // next episode selector
 

@@ -1,3 +1,5 @@
+
+
 #episodes {
   display: grid;
   gap: 1em;
@@ -7,13 +9,10 @@
   
 }
 
-#episodes {
-  display: grid;
-  gap: 1em;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  margin: 1.5rem;
-  text-align: center;
-  
+#root{
+  font-size: 20px;
+  padding-left: 20px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 .main-content{
@@ -21,21 +20,35 @@
   padding: 20px;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   margin: -10px;
 
 }
 
+#search{
+  height:30px;
+  width:250px;
+  font-size: 20px;
+}
+
+#episodeDropdown{
+  height:30px;
+  font-size: 20px;
+  border: grey;
+  color: grey;
+}
+
 .search-functions{
   display: flex;
   justify-content: space-evenly;
-  padding-top: 20px;
+  padding: 30px;
   background-color: gray;
   margin-left: -10px;
   margin-right: -10px;
   margin-top: -10px;
   padding-bottom: 20px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 .card{
@@ -44,7 +57,7 @@
   border: 2px solid grey;
   border-radius: 15px;
   box-shadow: 0 5px 15px 5px rgb(0 0 0 / 0.4);
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .card img{
