@@ -98,6 +98,12 @@ function dropDownMenu(episodeList){
 }
 
 
+// next step cerate a an event listener for when the user clicks the dropdown
+//create a function to show the episode that the user picks
+
+// create a fetch for the data - how should i then switch to fetching - google this
+
+
 
 
 
