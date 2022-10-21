@@ -7,7 +7,7 @@ const episodeDropdown = document.getElementById("episodeDropdown");
 let allEpisodes; 
 let seasonNumber;
 let episodeNumber;
-let url = "https://api.tvmaze.com/shows/76/episodes";
+let url = "https://api.tvmaze.com/shows/82/episodes";
 
 
 fetch(url)
