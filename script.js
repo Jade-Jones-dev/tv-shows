@@ -122,5 +122,21 @@ You can get the list of shows by loading shows.js in your index.html and using t
 // give them a value
 //display the page
 
+/*
+Level 500
+Add a shows list and search
+Complete all requirements from level 400
+When your app starts, present a listing of all shows ("shows listing")
+For each show, you must display at least name, image, summary, genres, status, rating, and runtime.
+When a show name is clicked, your app should:
+fetch and present episodes from that show (enabling episode search and selection as before)
+hide the "shows listing" view.
+Add a navigation link to enable the user to return to the "shows listing"
+When this is clicked, the episodes listing should be hidden
+Provide a free-text show search through show names, genres, and summary texts.
+Ensure that your episode search and episode selector controls still work correctly when you switch from shows listing to episodes listing and back.
+Continue to get the list of shows the same way you did in level 400. (You do not need to fetch it.)
+*/
+
 
 window.onload = setup;
