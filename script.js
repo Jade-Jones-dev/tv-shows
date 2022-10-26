@@ -16,7 +16,6 @@ fetch(url)
 
 // initial functions
 function setup() {
-	
 	makePageForEpisodes(allEpisodes);  
 }
 
@@ -97,7 +96,6 @@ function dropDownMenu(episodeList){
   
 }
 
-
 // adding event listener to the dropdown
 episodeDropdown.addEventListener('change', function(e){
 
@@ -110,6 +108,19 @@ episodeDropdown.addEventListener('change', function(e){
 	results.innerHTML = "";
 	makePageForEpisodes(matchedEpisode);
 })
+
+// create a show selector
+
+/*
+Add a select input which allows you to choose which show you are interested in
+When a show is selected, your app should display the episodes for that show as per the earlier levels of this challenge, except that it should first fetch the episode list from the API - see below
+You can get the list of shows by loading shows.js in your index.html and using the provided function: getAllShows()
+*/
+
+// create a dropdown
+//get all shows
+// give them a value
+//display the page
 
 
 window.onload = setup;
