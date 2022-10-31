@@ -114,14 +114,36 @@ episodeDropdown.addEventListener('change', function(e){
 
 // create a show selector
 function dropDownMenu2(allShows) {
-	
 	allShows.forEach((show) => {
 		let optionEl = document.createElement("option");
 		optionEl.innerHTML = `${show.name}`;
-		optionEl.value = `${show.name}`;
+		optionEl.value = `${show.id}`;
 		searchDropdown.append(optionEl);
 	});
+
+
 }
+//TODO sort the event listener out on dropdown
+searchDropdown.addEventListener("change",function (e){
+	let show = e.target.value;
+	url = `https://api.tvmaze.com/shows/${show.id}/episodes`;
+	let results = document.getElementById("episodes");
+	results.innerHTML = " ";
+	makePageForEpisodes(url);
+	
+});
+
+//sorts the shows into alphabetical order
+
+allShows.sort((a, b) => {
+	if (a.name.toLowerCase() > b.name.toLowerCase()) {
+		return 1;
+	} else if (b.name.toLowerCase() > a.name.toLowerCase()) {
+		return -1;
+	} else {
+		return 0;
+	}
+});
 
 
 /*
@@ -130,9 +152,6 @@ When a show is selected, your app should display the episodes for that show as p
 You can get the list of shows by loading shows.js in your index.html and using the provided function: getAllShows()
 */
 
-// create a dropdown
-//get all shows
-// give them a value
 //display the page
 
 /*
