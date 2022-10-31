@@ -56,7 +56,6 @@ h1{
 }
 
 #search:hover{
-    color: #fff;
     box-shadow: 0 0 5px magenta,
                 0 0 20px rgba(255, 0, 255, 0.8),
                 0 0 35px rgb(255 0 255 / 0.7),
@@ -73,8 +72,7 @@ h1{
   color: grey;
 }
 
-#episodeDropdown:hover{
-    color: #fff;
+#episodeDropdown:hover{ 
     box-shadow: 0 0 5px magenta,
                 0 0 20px rgba(255, 0, 255, 0.8),
                 0 0 35px rgb(255 0 255 / 0.7),
@@ -84,7 +82,7 @@ h1{
 
 .search-functions{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding: 30px;
   background-color: gray;
   margin-left: -10px;
@@ -133,9 +131,26 @@ h1{
   margin-top: -5px;
 }
 
-#episodeDropdown{
-  width:300px;
+#episodeDropdown {
+  width:250px;
   border-radius: 5px;
+}
+
+#searchDropdown{
+  width:250px;
+  border-radius: 5px;
+  height:30px;
+  font-size: 20px;
+  border: grey;
+  color: grey;
+}
+
+#searchDropdown:hover{ 
+    box-shadow: 0 0 5px magenta,
+                0 0 20px rgba(255, 0, 255, 0.8),
+                0 0 35px rgb(255 0 255 / 0.7),
+                0 0 50px rgb(255 0 255 / 0.6);
+    border-color: #fff;
 }
 
 

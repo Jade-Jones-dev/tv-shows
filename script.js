@@ -8,6 +8,8 @@ let allEpisodes;
 let seasonNumber;
 let episodeNumber;
 let url = "https://api.tvmaze.com/shows/82/episodes";
+let allShows = getAllShows();
+
 
 
 fetch(url)
@@ -16,7 +18,8 @@ fetch(url)
 
 // initial functions
 function setup() {
-	makePageForEpisodes(allEpisodes);  
+	makePageForEpisodes(allEpisodes); 
+	dropDownMenu2(allShows);
 }
 
 // creating the initial cards for episodes
@@ -110,6 +113,16 @@ episodeDropdown.addEventListener('change', function(e){
 })
 
 // create a show selector
+function dropDownMenu2(allShows) {
+	
+	allShows.forEach((show) => {
+		let optionEl = document.createElement("option");
+		optionEl.innerHTML = `${show.name}`;
+		optionEl.value = `${show.name}`;
+		searchDropdown.append(optionEl);
+	});
+}
+
 
 /*
 Add a select input which allows you to choose which show you are interested in
