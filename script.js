@@ -18,9 +18,47 @@ fetch(url)
 
 // initial functions
 function setup() {
-	makePageForEpisodes(allEpisodes); 
+	makePageForEpisodes(allEpisodes)
 	dropDownMenu2(allShows);
+
 }
+/*
+function makePageForShows(allShows) {
+	const rootElem = document.getElementById("root");
+	rootElem.textContent = ` ${allShows.length} episode(s)`;
+	episodeList.forEach((episode) => {
+		let cardEl = document.createElement("div");
+		let imageEl = document.createElement("img");
+		let titleEl = document.createElement("h2");
+		let seasonEl = document.createElement("h3");
+		let summaryEl = document.createElement("div");
+		//adding 0 to episode and season numbers
+		if (episode.season < 10) {
+			seasonNumber = `0${episode.season}`;
+		} else {
+			seasonNumber = episode.season;
+		}
+		if (episode.number < 10) {
+			episodeNumber = `0${episode.number}`;
+		} else {
+			episodeNumber = episode.number;
+		}
+		cardEl.className = "card";
+		titleEl.className = "title";
+		seasonEl.className = "seasons";
+		imageEl.className = "img";
+		summaryEl.className = "summary";
+		titleEl.innerText = `${show.name}`;
+		seasonEl.innerText = `S${seasonNumber}E${episodeNumber}`;
+		imageEl.setAttribute("src", show.image.original);
+		summaryEl.innerHTML = show.summary;
+		//appending the cards to the the container
+		cardEl.append(imageEl, titleEl, seasonEl, summaryEl);
+		episodesList.append(cardEl);
+	});
+	// creating the episode list dropdown menu by calling the function
+	dropDownMenu(episodeList);
+}*/
 
 // creating the initial cards for episodes
 function makePageForEpisodes(episodeList) {
@@ -117,7 +155,7 @@ function dropDownMenu2(allShows) {
 	allShows.forEach((show) => {
 		let optionEl = document.createElement("option");
 		optionEl.innerHTML = `${show.name}`;
-		optionEl.value = `${show.id}`;
+		optionEl.value = show.id;
 		searchDropdown.append(optionEl);
 	});
 
