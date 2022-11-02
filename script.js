@@ -4,30 +4,44 @@ const rootElem = document.getElementById("root");
 const searchFunctionEl = document.getElementById("search-functions");
 const episodesList = document.getElementById("episodes");
 const episodeDropdown = document.getElementById("episodeDropdown");
+const showList = document.getElementById("shows");
 let allEpisodes;
 let seasonNumber;
 let episodeNumber;
 let url = "https://api.tvmaze.com/shows/82/episodes";
-let allShows = getAllShows();
+let allShows = getAllShows()
 
-fetch(url)
-	.then((response) => response.json()) //necessary to get json response
-	.then((data) => (allEpisodes = data)); //storing the data in the variable
+// fetch(url)
+// 	.then((response) => response.json()) //necessary to get json response
+// 	.then((data) => (allEpisodes = data)); //storing the data in the variable
 
 // initial functions
 function setup() {
-	makePageForEpisodes(allEpisodes);
-	dropDownMenu2(allShows);
+	 fetch("https://api.tvmaze.com/shows")
+			.then((response) => response.json())
+			.then((data) => {
+				allShows = data;
+				getAllShows();
+			});
+			makePageForShows(allShows)
+	 
 }
-/*
-function makePageForShows(allShows) {
-	const rootElem = document.getElementById("root");
-	rootElem.textContent = ` ${allShows.length} episode(s)`;
-	episodeList.forEach((episode) => {
+
+function makePageForShows(showsList) {
+		showsList.forEach((show) => {
 		let cardEl = document.createElement("div");
 		let imageEl = document.createElement("img");
 		let titleEl = document.createElement("h2");
-		let seasonEl = document.createElement("h3");
+		cardEl.className = "card";
+		titleEl.className = "title";
+		titleEl.innerText = `${show.name}`;
+		imageEl.setAttribute("src", show.image.original);
+		imageEl.className = "img";
+		cardEl.append(imageEl, titleEl,);
+		showList.append(cardEl);})
+}
+/*
+	let seasonEl = document.createElement("h3");
 		let summaryEl = document.createElement("div");
 		//adding 0 to episode and season numbers
 		if (episode.season < 10) {
@@ -40,22 +54,19 @@ function makePageForShows(allShows) {
 		} else {
 			episodeNumber = episode.number;
 		}
-		cardEl.className = "card";
-		titleEl.className = "title";
+		
 		seasonEl.className = "seasons";
-		imageEl.className = "img";
+		
 		summaryEl.className = "summary";
-		titleEl.innerText = `${show.name}`;
+		
 		seasonEl.innerText = `S${seasonNumber}E${episodeNumber}`;
-		imageEl.setAttribute("src", show.image.original);
+		
 		summaryEl.innerHTML = show.summary;
 		//appending the cards to the the container
-		cardEl.append(imageEl, titleEl, seasonEl, summaryEl);
-		episodesList.append(cardEl);
+		
 	});
 	// creating the episode list dropdown menu by calling the function
-	dropDownMenu(episodeList);
-}*/
+	dropDownMenu(episodeList);*/
 
 // creating the initial cards for episodes
 function makePageForEpisodes(episodeList) {
@@ -112,7 +123,7 @@ function searchShows() {
 	makePageForEpisodes(filteredEpisodes);
 }
 
-// creating dropdown
+// creating dropdown for episodes
 function dropDownMenu(episodeList) {
 	episodeList.forEach((episode) => {
 		let optionEl = document.createElement("option");
@@ -133,7 +144,7 @@ function dropDownMenu(episodeList) {
 	});
 }
 
-// adding event listener to the dropdown
+// adding event listener to the episode dropdown
 episodeDropdown.addEventListener("change", function (e) {
 	let selectedEpisode = e.target.value;
 	let matchedEpisode = allEpisodes.filter((episode) => {
@@ -153,14 +164,6 @@ function dropDownMenu2(allShows) {
 		searchDropdown.append(optionEl);
 	});
 }
-//TODO sort the event listener out on dropdown
-// searchDropdown.addEventListener("change", function (e) {
-// 	let show = e.target.value;
-// 	url = `https://api.tvmaze.com/shows/${show.id}/episodes`;
-// 	let results = document.getElementById("episodes");
-// 	results.innerHTML = " ";
-// 	makePageForEpisodes(url);
-// });
 
 //sorts the shows into alphabetical order
 
@@ -173,6 +176,7 @@ allShows.sort((a, b) => {
 		return 0;
 	}
 });
+
 
 /*
 Add a select input which allows you to choose which show you are interested in
