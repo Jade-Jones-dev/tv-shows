@@ -4,22 +4,25 @@ const rootElem = document.getElementById("root");
 const searchFunctionEl = document.getElementById("search-functions");
 const episodesList = document.getElementById("episodes");
 const episodeDropdown = document.getElementById("episodeDropdown");
-let allEpisodes; 
+
+let allEpisodes;
+
 let seasonNumber;
 let episodeNumber;
 let url = "https://api.tvmaze.com/shows/82/episodes";
 let allShows = getAllShows();
 
 
-
 fetch(url)
-.then((response) => response.json())//necessary to get json response 
-.then((data) => (allEpisodes = data))//storing the data in the variable
+	.then((response) => response.json()) //necessary to get json response
+	.then((data) => (allEpisodes = data)); //storing the data in the variable
 
 // initial functions
 function setup() {
-	makePageForEpisodes(allEpisodes)
+	makePageForEpisodes(allEpisodes);
 	dropDownMenu2(allShows);
+
+
 
 }
 /*
@@ -68,7 +71,9 @@ function makePageForEpisodes(episodeList) {
 		let cardEl = document.createElement("div");
 		let imageEl = document.createElement("img");
 		let titleEl = document.createElement("h2");
+
     	let seasonEl = document.createElement("h3")
+
 		let summaryEl = document.createElement("div");
 		//adding 0 to episode and season numbers
 		if (episode.season < 10) {
@@ -83,11 +88,13 @@ function makePageForEpisodes(episodeList) {
 		}
 		cardEl.className = "card";
 		titleEl.className = "title";
-    	seasonEl.className = "season";
+
+		seasonEl.className = "season";
 		imageEl.className = "img";
 		summaryEl.className = "summary";
-    	titleEl.innerText = `${episode.name}`;
-    	seasonEl.innerText = `S${seasonNumber}E${episodeNumber}`;
+		titleEl.innerText = `${episode.name}`;
+		seasonEl.innerText = `S${seasonNumber}E${episodeNumber}`;
+
 		imageEl.setAttribute("src", episode.image.original);
 		summaryEl.innerHTML = episode.summary;
 		//appending the cards to the the container
@@ -95,7 +102,9 @@ function makePageForEpisodes(episodeList) {
 		episodesList.append(cardEl);
 	});
 	// creating the episode list dropdown menu by calling the function
+
   	dropDownMenu(episodeList); 
+
 }
 
 //adding event listener to search box
@@ -116,8 +125,9 @@ function searchShows() {
 }
 
 // creating dropdown
-function dropDownMenu(episodeList){
-  episodeList.forEach((episode) =>{
+function dropDownMenu(episodeList) {
+	episodeList.forEach((episode) => {
+
 		let optionEl = document.createElement("option");
 		//adding 0 to episode and season numbers
 		if (episode.season < 10) {
@@ -131,24 +141,23 @@ function dropDownMenu(episodeList){
 			episodeNumber = episode.number;
 		}
 		optionEl.innerHTML = `${episode.name} S${seasonNumber}E${episodeNumber} `;
-		optionEl.value = `E${episode.season}S${episode.number}`
+
+		optionEl.value = `E${episode.season}S${episode.number}`;
 		episodeDropdown.append(optionEl);
-	})
-  
+	});
 }
 
 // adding event listener to the dropdown
-episodeDropdown.addEventListener('change', function(e){
-
-	let selectedEpisode = e.target.value
+episodeDropdown.addEventListener("change", function (e) {
+	let selectedEpisode = e.target.value;
 	let matchedEpisode = allEpisodes.filter((episode) => {
-	return selectedEpisode == `E${episode.season}S${episode.number}`;
-		 }	
-	)
+		return selectedEpisode == `E${episode.season}S${episode.number}`;
+	});
 	const results = document.getElementById("episodes");
 	results.innerHTML = "";
 	makePageForEpisodes(matchedEpisode);
-})
+});
+
 
 // create a show selector
 function dropDownMenu2(allShows) {
@@ -159,16 +168,16 @@ function dropDownMenu2(allShows) {
 		searchDropdown.append(optionEl);
 	});
 
-
 }
 //TODO sort the event listener out on dropdown
-searchDropdown.addEventListener("change",function (e){
+searchDropdown.addEventListener("change", function (e) {
+
 	let show = e.target.value;
 	url = `https://api.tvmaze.com/shows/${show.id}/episodes`;
 	let results = document.getElementById("episodes");
 	results.innerHTML = " ";
 	makePageForEpisodes(url);
-	
+
 });
 
 //sorts the shows into alphabetical order
