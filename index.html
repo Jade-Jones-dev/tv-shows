@@ -3,17 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TV Show Project | My Name (My GitHub username)</title>
+    <title>TV Show Project | My Name (Jade-Jones-dev)</title>
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>
 
-  <body>
-    <div id="root">
+<body>
+  <header>
+    <h1>WatchItNow...</h1>
+  </header>
+    <div class="main-content">
+        <div id="root">
+        </div><ul id="results"></ul>
+          <select id="searchDropdown"></select>
+        <div id="search-function">
+           
+          <input autocomplete="off" type="search" id="search" placeholder="Search for an episode"/><ul id="results"></ul>
+          <select id="episodeDropdown"></select>
+        </div>
+          
     </div>
+
+    <div id="episodes"></div>
+    <footer>
+
+    </footer>
 
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
+    <script src="shows.js"></script>
 
     <!-- Loads YOUR javascript code -->
     <script src="script.js"></script>

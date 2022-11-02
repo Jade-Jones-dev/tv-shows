@@ -154,13 +154,13 @@ function dropDownMenu2(allShows) {
 	});
 }
 //TODO sort the event listener out on dropdown
-searchDropdown.addEventListener("change", function (e) {
-	let show = e.target.value;
-	url = `https://api.tvmaze.com/shows/${show.id}/episodes`;
-	let results = document.getElementById("episodes");
-	results.innerHTML = " ";
-	makePageForEpisodes(url);
-});
+// searchDropdown.addEventListener("change", function (e) {
+// 	let show = e.target.value;
+// 	url = `https://api.tvmaze.com/shows/${show.id}/episodes`;
+// 	let results = document.getElementById("episodes");
+// 	results.innerHTML = " ";
+// 	makePageForEpisodes(url);
+// });
 
 //sorts the shows into alphabetical order
 
