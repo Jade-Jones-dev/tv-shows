@@ -4,11 +4,14 @@ const rootElem = document.getElementById("root");
 const searchFunctionEl = document.getElementById("search-functions");
 const episodesList = document.getElementById("episodes");
 const episodeDropdown = document.getElementById("episodeDropdown");
+
 let allEpisodes;
+
 let seasonNumber;
 let episodeNumber;
 let url = "https://api.tvmaze.com/shows/82/episodes";
 let allShows = getAllShows();
+
 
 fetch(url)
 	.then((response) => response.json()) //necessary to get json response
@@ -18,6 +21,9 @@ fetch(url)
 function setup() {
 	makePageForEpisodes(allEpisodes);
 	dropDownMenu2(allShows);
+
+
+
 }
 /*
 function makePageForShows(allShows) {
@@ -65,7 +71,9 @@ function makePageForEpisodes(episodeList) {
 		let cardEl = document.createElement("div");
 		let imageEl = document.createElement("img");
 		let titleEl = document.createElement("h2");
-		let seasonEl = document.createElement("h3");
+
+    	let seasonEl = document.createElement("h3")
+
 		let summaryEl = document.createElement("div");
 		//adding 0 to episode and season numbers
 		if (episode.season < 10) {
@@ -80,11 +88,13 @@ function makePageForEpisodes(episodeList) {
 		}
 		cardEl.className = "card";
 		titleEl.className = "title";
+
 		seasonEl.className = "season";
 		imageEl.className = "img";
 		summaryEl.className = "summary";
 		titleEl.innerText = `${episode.name}`;
 		seasonEl.innerText = `S${seasonNumber}E${episodeNumber}`;
+
 		imageEl.setAttribute("src", episode.image.original);
 		summaryEl.innerHTML = episode.summary;
 		//appending the cards to the the container
@@ -92,7 +102,9 @@ function makePageForEpisodes(episodeList) {
 		episodesList.append(cardEl);
 	});
 	// creating the episode list dropdown menu by calling the function
-	dropDownMenu(episodeList);
+
+  	dropDownMenu(episodeList); 
+
 }
 
 //adding event listener to search box
@@ -115,6 +127,7 @@ function searchShows() {
 // creating dropdown
 function dropDownMenu(episodeList) {
 	episodeList.forEach((episode) => {
+
 		let optionEl = document.createElement("option");
 		//adding 0 to episode and season numbers
 		if (episode.season < 10) {
@@ -128,6 +141,7 @@ function dropDownMenu(episodeList) {
 			episodeNumber = episode.number;
 		}
 		optionEl.innerHTML = `${episode.name} S${seasonNumber}E${episodeNumber} `;
+
 		optionEl.value = `E${episode.season}S${episode.number}`;
 		episodeDropdown.append(optionEl);
 	});
@@ -144,6 +158,7 @@ episodeDropdown.addEventListener("change", function (e) {
 	makePageForEpisodes(matchedEpisode);
 });
 
+
 // create a show selector
 function dropDownMenu2(allShows) {
 	allShows.forEach((show) => {
@@ -152,14 +167,17 @@ function dropDownMenu2(allShows) {
 		optionEl.value = show.id;
 		searchDropdown.append(optionEl);
 	});
+
 }
 //TODO sort the event listener out on dropdown
 searchDropdown.addEventListener("change", function (e) {
+
 	let show = e.target.value;
 	url = `https://api.tvmaze.com/shows/${show.id}/episodes`;
 	let results = document.getElementById("episodes");
 	results.innerHTML = " ";
 	makePageForEpisodes(url);
+
 });
 
 //sorts the shows into alphabetical order
@@ -173,6 +191,7 @@ allShows.sort((a, b) => {
 		return 0;
 	}
 });
+
 
 /*
 Add a select input which allows you to choose which show you are interested in
@@ -197,5 +216,6 @@ Provide a free-text show search through show names, genres, and summary texts.
 Ensure that your episode search and episode selector controls still work correctly when you switch from shows listing to episodes listing and back.
 Continue to get the list of shows the same way you did in level 400. (You do not need to fetch it.)
 */
+
 
 window.onload = setup;

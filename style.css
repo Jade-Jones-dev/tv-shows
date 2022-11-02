@@ -1,6 +1,5 @@
-#root {
-  color: red;
-}
+
+
 #episodes {
   display: grid;
   gap: 1em;
@@ -8,6 +7,7 @@
   margin: 1.5rem;
   text-align: center;  
 }
+
 
 #root{
   font-size: 20px;
