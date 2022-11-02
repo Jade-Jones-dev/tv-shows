@@ -9,6 +9,7 @@ let allEpisodes;
 let seasonNumber;
 let episodeNumber;
 let url = "https://api.tvmaze.com/shows/82/episodes";
+let showsUrl = "https://api.tvmaze.com/shows";
 let allShows = getAllShows()
 
 // fetch(url)
@@ -17,13 +18,13 @@ let allShows = getAllShows()
 
 // initial functions
 function setup() {
-	 fetch("https://api.tvmaze.com/shows")
+	 fetch(showsUrl)
 			.then((response) => response.json())
 			.then((data) => {
 				allShows = data;
 				getAllShows();
 			});
-			makePageForShows(allShows)
+			makePageForShows(allShows);
 	 
 }
 
@@ -35,7 +36,7 @@ function makePageForShows(showsList) {
 		cardEl.className = "card";
 		titleEl.className = "title";
 		titleEl.innerText = `${show.name}`;
-		imageEl.setAttribute("src", show.image.original);
+		imageEl.setAttribute("src", show.image.medium);
 		imageEl.className = "img";
 		cardEl.append(imageEl, titleEl,);
 		showList.append(cardEl);})
@@ -177,14 +178,6 @@ allShows.sort((a, b) => {
 	}
 });
 
-
-/*
-Add a select input which allows you to choose which show you are interested in
-When a show is selected, your app should display the episodes for that show as per the earlier levels of this challenge, except that it should first fetch the episode list from the API - see below
-You can get the list of shows by loading shows.js in your index.html and using the provided function: getAllShows()
-*/
-
-//display the page
 
 /*
 Level 500
