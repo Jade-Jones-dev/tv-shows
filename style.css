@@ -9,6 +9,9 @@
   text-align: center;  
 }
 
+a{
+  text-decoration: none;
+}
 #shows{
    display: grid;
   gap: 1em;

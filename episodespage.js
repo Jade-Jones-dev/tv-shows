@@ -1,72 +1,36 @@
-//You can edit ALL of the code here
-// initial variables
 const rootElem = document.getElementById("root");
 const searchFunctionEl = document.getElementById("search-functions");
 const episodesList = document.getElementById("episodes");
 const episodeDropdown = document.getElementById("episodeDropdown");
-const searchDropdownEl = document.getElementById('searchDropdown')
-const showList = document.getElementById("shows");
-let allEpisodes;
+let allEpisodes ;
 let seasonNumber;
 let episodeNumber;
-let url = "https://api.tvmaze.com/shows/82/episodes";
-let showsUrl = "https://api.tvmaze.com/shows";
-let allShows = getAllShows();
-let showsList
 
 
+const params = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+})
+let value = params.id;
+
+
+fetch("https://api.tvmaze.com/shows/" + value + "/episodes")
+.then(data => {return data.json()
+})
+.then(episodes =>{
+    makePageForEpisodes(episodes)
+})
 // initial functions
 function setup() {
-	
-	 fetch(showsUrl)
-			.then((response) => response.json())
-			.then((data) => {
-				allShows = data;
-				getAllShows();
-			});
-			// hides episode searches
-			let search = document.getElementById("search-function");
-			search.style.display = "none";
-		makePageForShows(allShows);
-		
-
+				
 }
 
-function makePageForShows(showsList) {
-  		showsList.sort((a, b) => {        let aShow = a.name.toLowerCase();
-    	let bShow = b.name.toLowerCase();
-    	return aShow < bShow ? -1 : 1})
-        rootElem.textContent = ` ${showsList.length} shows(s)`;
-		showsList.forEach((show) => {
-		let aEl = document.createElement("a")
-		let cardEl = document.createElement("div");
-		let option = document.createElement('option')
-		let imageEl = document.createElement("img");
-		let titleEl = document.createElement("h2");
-		// titleEl.id = show.id;
-		option.className ='option'
-		cardEl.className = "card";
-		cardEl.id = show.id
-		aEl.setAttribute('href', "episodes.html?id=" + show.id)
-		titleEl.className = "title";
-		option.innerText =`${show.name}`;
-		option.id = show.id
-		titleEl.innerText = `${show.name}`;
-		imageEl.setAttribute("src", show.image.medium);
-		imageEl.className = "img";
-		cardEl.append(imageEl, titleEl,);
-		aEl.append(cardEl)
-		showList.append(aEl);
-		searchDropdownEl.append(option)
-	})
-		
-}
+
 
 
 // creating the initial cards for episodes
 function makePageForEpisodes(episodeList) {
 	const rootElem = document.getElementById("root");
-	
+	rootElem.textContent = ` ${episodeList.length} episode(s)`;
 	episodeList.forEach((episode) => {
 		let cardEl = document.createElement("div");
 		let imageEl = document.createElement("img");
@@ -85,6 +49,7 @@ function makePageForEpisodes(episodeList) {
 			episodeNumber = episode.number;
 		}
 		cardEl.className = "card";
+        cardEl.setAttribute =("value", `E${episode.season}S${episode.number}`);
 		titleEl.className = "title";
 		seasonEl.className = "season";
 		imageEl.className = "img";
@@ -141,6 +106,7 @@ function dropDownMenu(episodeList) {
 
 // adding event listener to the episode dropdown
 episodeDropdown.addEventListener("change", function (e) {
+   
 	let selectedEpisode = e.target.value;
 	let matchedEpisode = allEpisodes.filter((episode) => {
 		return selectedEpisode == `E${episode.season}S${episode.number}`;
@@ -148,6 +114,7 @@ episodeDropdown.addEventListener("change", function (e) {
 	const results = document.getElementById("episodes");
 	results.innerHTML = "";
 	makePageForEpisodes(matchedEpisode);
+    
 });
 
 // 
