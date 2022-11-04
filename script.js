@@ -43,21 +43,23 @@ function makePageForShows(showsList) {
 		let option = document.createElement('option')
 		let imageEl = document.createElement("img");
 		let titleEl = document.createElement("h2");
+		let optionA =document.createElement("a")
 		// titleEl.id = show.id;
 		option.className ='option'
 		cardEl.className = "card";
 		cardEl.id = show.id
 		aEl.setAttribute('href', "episodes.html?id=" + show.id)
 		titleEl.className = "title";
+		option.setAttribute("href", "episodes.html?id=" + show.id);
 		option.innerText =`${show.name}`;
-		option.id = show.id
+		option.value = "episodes.html?id=" + show.id
 		titleEl.innerText = `${show.name}`;
 		imageEl.setAttribute("src", show.image.medium);
 		imageEl.className = "img";
 		cardEl.append(imageEl, titleEl,);
 		aEl.append(cardEl)
 		showList.append(aEl);
-		searchDropdownEl.append(option)
+		searchDropdownEl.append(option);
 	})
 		
 }
@@ -150,7 +152,9 @@ episodeDropdown.addEventListener("change", function (e) {
 	makePageForEpisodes(matchedEpisode);
 });
 
+
 // 
+ 
 
 /*
 Level 500
@@ -167,5 +171,14 @@ Provide a free-text show search through show names, genres, and summary texts.
 Ensure that your episode search and episode selector controls still work correctly when you switch from shows listing to episodes listing and back.
 Continue to get the list of shows the same way you did in level 400. (You do not need to fetch it.)
 */
+
+document.getElementById("s").onchange = function () {
+	myFunction();
+};
+
+function myFunction() {
+	var x = document.getElementById("fname");
+	return 
+}
 
 window.onload = setup;
