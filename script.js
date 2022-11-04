@@ -15,16 +15,20 @@ let allShows = getAllShows();
 let showsList
 
 
+// initial functions
+function setup() {
+	
 	 fetch(showsUrl)
 			.then((response) => response.json())
 			.then((data) => {
 				allShows = data;
 				getAllShows();
 			});
+			// hides episode searches
+			let search = document.getElementById("search-function");
+			search.style.display = "none";
 		makePageForShows(allShows);
-// initial functions
-function setup() {
-	
+		
 
 }
 
@@ -143,15 +147,6 @@ episodeDropdown.addEventListener("change", function (e) {
 });
 
 // 
-function displayTheEpisode(e) {
-	removeAllChildeNodes(rootElem);
-	showId = e.target.value;
-	fetch("https://api.tvmaze.com/shows/" + showId + "/episodes")
-		.then((response) => response.json())
-		.then((data) => (allEpisodes = data))
-		.then(() => getEpisodes());
-}
-
 
 /*
 Level 500
