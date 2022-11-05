@@ -17,6 +17,7 @@ let showsUrl = "https://api.tvmaze.com/shows";
 let allShows = getAllShows();
 let showsList;
 
+
 // fetching episodes data
 fetch(url)
 	.then((response) => response.json()) //necessary to get json response
@@ -27,6 +28,11 @@ fetch(url)
 	console.error(error);
   })
 
+  // initial functions
+function setup() {
+	makePageForEpisodes(allEpisodes);
+}
+/*
 //  fetching show data
 fetch(showsUrl)
 		.then((response) => response.json())
@@ -121,7 +127,8 @@ function searchShows2() {
 	makePageForShows(filteredShows);
 	
 }
-/*
+*/
+
 // Functions for episodes
 
 // creating the initial cards for episodes
@@ -210,5 +217,5 @@ episodeDropdown.addEventListener("change", function (e) {
 	results.innerHTML = "";
 	makePageForEpisodes(matchedEpisode);
 });
-*/
+
 window.onload = setup;
