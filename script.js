@@ -33,7 +33,6 @@ fetch(showsUrl)
 		.then((response) => response.json())
 		.then((data) => {
 			allShows = data;
-			console.log(data);
 			getAllShows();
 		});
 // initial functions
@@ -54,10 +53,19 @@ let showSelect = document.getElementById("showDropdown");
 let sortedAllShows = allShows.sort(compare);
 for (let i = 0; i < allShows.length; i++) {
   let option = document.createElement("option");
-  option.value = i;
+  option.value = allShows[i].id;
   option.textContent = `${allShows[i].name}`;
   showSelect.appendChild(option);
 }
+
+
+showsDropdown.addEventListener("change", (e) => {
+	const showID = e.target.value;
+	console.log(showID);
+	showsdiv.innerHTML = "";
+	makePageForShows(showID)
+// 	e.target.value === "allShows" ? makePageShows(allShows) : fetching(showID);
+});
 
 // sort shows
 function compare(a, b) {
@@ -71,13 +79,7 @@ function compare(a, b) {
 // create cards to display shows
 function makePageForShows(showsList) {
 	rootElem.textContent = `${showsList.length} shows`;
-
-	showsList.sort((a, b) => {
-		let aShow = a.name.toLowerCase();
-		let bShow = b.name.toLowerCase();
-		return aShow < bShow ? -1 : 1;
-	});
-
+	
 	showsList.forEach((show) => {
 		let aEl = document.createElement("a");
 		let cardEl = document.createElement("div");
@@ -104,7 +106,6 @@ function makePageForShows(showsList) {
 	});
 }
 
-//create the search function
 //adding event listener to search box
 showSearchEl.addEventListener("keyup", searchShows2);
 
