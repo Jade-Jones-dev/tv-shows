@@ -33,6 +33,7 @@ fetch(showsUrl)
 		.then((response) => response.json())
 		.then((data) => {
 			allShows = data;
+			console.log(data);
 			getAllShows();
 		});
 // initial functions
@@ -79,7 +80,13 @@ function compare(a, b) {
 // create cards to display shows
 function makePageForShows(showsList) {
 	rootElem.textContent = `${showsList.length} shows`;
-	
+
+	showsList.sort((a, b) => {
+		let aShow = a.name.toLowerCase();
+		let bShow = b.name.toLowerCase();
+		return aShow < bShow ? -1 : 1;
+	});
+
 	showsList.forEach((show) => {
 		let aEl = document.createElement("a");
 		let cardEl = document.createElement("div");
@@ -106,6 +113,7 @@ function makePageForShows(showsList) {
 	});
 }
 
+//create the search function
 //adding event listener to search box
 showSearchEl.addEventListener("keyup", searchShows2);
 

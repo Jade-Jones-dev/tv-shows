@@ -58,13 +58,11 @@ h1{
 .main-content{
   background-color: black;
   color:white;
-  padding: 20px;
-  padding-bottom: 30px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-evenly;
   margin: -10px;
+  padding:20px;
 
 }
 
@@ -73,9 +71,25 @@ h1{
   width:250px;
   font-size: 20px;
   border-radius: 5px;
+  padding: 1px 2px;
 }
 
 #search:hover{
+    box-shadow: 0 0 5px magenta,
+                0 0 20px rgba(255, 0, 255, 0.8),
+                0 0 35px rgb(255 0 255 / 0.7),
+                0 0 50px rgb(255 0 255 / 0.6);
+    border-color: #fff;
+}
+
+#shows-search{
+  height:30px;
+  width:250px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+#shows-search:hover{
     box-shadow: 0 0 5px magenta,
                 0 0 20px rgba(255, 0, 255, 0.8),
                 0 0 35px rgb(255 0 255 / 0.7),
@@ -88,6 +102,7 @@ h1{
 #episodeDropdown{
   height:30px;
   font-size: 20px;
+  width:250px;
   border: grey;
   color: grey;
 }
@@ -100,13 +115,27 @@ h1{
     border-color: #fff;
 }
 
+#showDropdown{
+  height:30px;
+  border-radius: 5px;
+  width:250px;
+  font-size: 20px;
+  border: grey;
+  color: grey;
+}
+
+#showDropdown:hover{ 
+    box-shadow: 0 0 5px magenta,
+                0 0 20px rgba(255, 0, 255, 0.8),
+                0 0 35px rgb(255 0 255 / 0.7),
+                0 0 50px rgb(255 0 255 / 0.6);
+    border-color: #fff;
+}
+
 #search-function{
   display: flex;
   justify-content: space-between;
   padding: 30px; 
-  margin-left: -10px;
-  margin-right: -10px;
-  margin-top: -10px;
   padding-bottom: 20px;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
