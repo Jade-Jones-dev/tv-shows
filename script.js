@@ -9,14 +9,120 @@ let seasonNumber;
 let episodeNumber;
 let url = "https://api.tvmaze.com/shows/82/episodes";
 
+const showSearchFunctionEl = document.getElementById("show-search-function");
+const showSearchEl = document.getElementById("shows-search");
+const showsdiv = document.getElementById("shows");
+const showsDropdown = document.getElementById("showDropdown");
+let showsUrl = "https://api.tvmaze.com/shows";
+let allShows = getAllShows();
+let showsList;
+
+// fetching episodes data
 fetch(url)
 	.then((response) => response.json()) //necessary to get json response
-	.then((data) => (allEpisodes = data)); //storing the data in the variable
+	.then((data) => {
+      allEpisodes = data;
+    })
+  .catch (function(error) {
+	console.error(error);
+  })
+  //storing the data in the variable
 
+//  fetching show data
+fetch(showsUrl)
+		.then((response) => response.json())
+		.then((data) => {
+			allShows = data;
+			console.log(data);
+			getAllShows();
+		});
 // initial functions
 function setup() {
-	makePageForEpisodes(allEpisodes);
+	makePageForShows(allShows);
 }
+
+
+
+
+
+//Functions for shows
+
+
+
+//create the show selector
+let showSelect = document.getElementById("showDropdown");
+let sortedAllShows = allShows.sort(compare);
+for (let i = 0; i < allShows.length; i++) {
+  let option = document.createElement("option");
+  option.value = i;
+  option.textContent = `${allShows[i].name}`;
+  showSelect.appendChild(option);
+}
+
+// sort shows
+function compare(a, b) {
+	let aShow = a.name.toLowerCase();
+	let bShow = b.name.toLowerCase();
+	return aShow < bShow ? -1 : 1;
+}
+
+
+
+// create cards to display shows
+function makePageForShows(showsList) {
+	rootElem.textContent = `${showsList.length} shows`;
+
+	showsList.sort((a, b) => {
+		let aShow = a.name.toLowerCase();
+		let bShow = b.name.toLowerCase();
+		return aShow < bShow ? -1 : 1;
+	});
+
+	showsList.forEach((show) => {
+		let aEl = document.createElement("a");
+		let cardEl = document.createElement("div");
+		let imageEl = document.createElement("img");
+		let titleEl = document.createElement("h2");
+
+		cardEl.className = "show-card";
+		titleEl.className = "title";
+		imageEl.className = "img;";
+
+		cardEl.id = show.id;
+		cardEl.value = show.id;
+		titleEl.innerText = `${show.name}`;
+		imageEl.setAttribute("src", show.image.medium);
+
+		cardEl.append(imageEl, titleEl);
+		aEl.append(cardEl);
+		showsdiv.append(aEl);
+
+		let optionEl = document.createElement("option");
+		optionEl.innerHTML = `${show.name}`;
+		optionEl.value = `${show.id}`;
+		showsDropdown.append(optionEl);
+	});
+}
+
+//create the search function
+//adding event listener to search box
+showSearchEl.addEventListener("keyup", searchShows2);
+
+// creating search function
+function searchShows2() {
+	let search = document.getElementById("shows-search").value;
+	const filteredShows = allShows.filter((show) => {
+		return (
+			show.name.toLowerCase().includes(search.toLowerCase()) 
+		);
+	});
+	const results = document.getElementById("shows");
+	results.innerHTML = "";
+	makePageForShows(filteredShows);
+	
+}
+/*
+// Functions for episodes
 
 // creating the initial cards for episodes
 function makePageForEpisodes(episodeList) {
@@ -104,5 +210,5 @@ episodeDropdown.addEventListener("change", function (e) {
 	results.innerHTML = "";
 	makePageForEpisodes(matchedEpisode);
 });
-
+*/
 window.onload = setup;
