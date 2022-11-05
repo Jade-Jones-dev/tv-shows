@@ -41,13 +41,7 @@ function setup() {
 	makePageForShows(allShows);
 }
 
-
-
-
-
 //Functions for shows
-
-
 
 //create the show selector
 let showSelect = document.getElementById("showDropdown");
@@ -59,7 +53,7 @@ for (let i = 0; i < allShows.length; i++) {
   showSelect.appendChild(option);
 }
 
-
+//event listener for show dropdown
 showsDropdown.addEventListener("change", (e) => {
 	const showID = e.target.value;
 	console.log(showID);
@@ -74,8 +68,6 @@ function compare(a, b) {
 	let bShow = b.name.toLowerCase();
 	return aShow < bShow ? -1 : 1;
 }
-
-
 
 // create cards to display shows
 function makePageForShows(showsList) {
