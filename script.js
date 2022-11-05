@@ -26,7 +26,6 @@ fetch(url)
   .catch (function(error) {
 	console.error(error);
   })
-  //storing the data in the variable
 
 //  fetching show data
 fetch(showsUrl)
@@ -80,6 +79,7 @@ function makePageForShows(showsList) {
 	});
 
 	showsList.forEach((show) => {
+		
 		let aEl = document.createElement("a");
 		let cardEl = document.createElement("div");
 		let imageEl = document.createElement("img");
@@ -105,7 +105,6 @@ function makePageForShows(showsList) {
 	});
 }
 
-//create the search function
 //adding event listener to search box
 showSearchEl.addEventListener("keyup", searchShows2);
 
