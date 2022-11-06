@@ -126,7 +126,7 @@ showList.sort((a, b) => {
 	showList.forEach((show) => {
 		let showoptionEl = document.createElement("option");
 		showoptionEl.innerHTML = `${show.name} `;
-		showoptionEl.value = show.id;
+		showoptionEl.value = show.id
 		showsDropdown.append(showoptionEl);
 	});
 }
