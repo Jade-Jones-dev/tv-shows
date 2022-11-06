@@ -52,16 +52,6 @@ function setup() {
 
 //Functions for shows
 
-//create the show selector
-let showSelect = document.getElementById("showDropdown");
-let sortedAllShows = allShows.sort(compare);
-for (let i = 0; i < allShows.length; i++) {
-  let option = document.createElement("option");
-  option.value = allShows[i].id;
-  option.textContent = `${allShows[i].name}`;
-  showSelect.appendChild(option);
-}
-
 //event listener for show dropdown
 showsDropdown.addEventListener("change", (e) => {
 	const showID = e.target.value;
@@ -131,9 +121,9 @@ function searchShows2() {
 	makePageForShows(filteredShows);
 	
 }
-
 */
 
+// show dropdown menu
 function dropDownMenu2(showList) {
 	showList.sort((a, b) => {
 		let aShow = a.name.toLowerCase();
@@ -148,7 +138,7 @@ function dropDownMenu2(showList) {
 	});
 }
 
-
+// next step - fetch the episodes for the selected show with event listener
 
 
 // Functions for episodes
