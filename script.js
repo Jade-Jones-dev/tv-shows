@@ -118,11 +118,15 @@ function searchShows2() {
 
 // show dropdown menu
 function dropDownMenu2(showList) {
-showList.sort((a, b) => {
-	let aShow = a.name.toLowerCase();
-	let bShow = b.name.toLowerCase();
-	return aShow < bShow ? -1 : 1;
-});
+// allShows.sort((a, b) => {
+// 	if (a.name.toLowerCase() > b.name.toLowerCase()) {
+// 		return 1;
+// 	} else if (b.name.toLowerCase() > a.name.toLowerCase()) {
+// 		return -1;
+// 	} else {
+// 		return 0;
+// 	}
+// });
 	showList.forEach((show) => {
 		let showoptionEl = document.createElement("option");
 		showoptionEl.innerHTML = `${show.name} `;
@@ -133,6 +137,7 @@ showList.sort((a, b) => {
 
 // next step - fetch the episodes for the selected show with event listener
 showsDropdown.addEventListener("change", function (e) {
+	
 	let selectedShow = e.target.value;
 	console.log(selectedShow);
 	
@@ -142,12 +147,15 @@ showsDropdown.addEventListener("change", function (e) {
 			allEpisodes = data
 		)
 		console.log(allEpisodes);
-
+const episodeResults = document.getElementById("episodeDropdown");
+episodeResults.innerHTML = "";
 		// why is it not showing episodes? showing in conols
 
     	const results = document.getElementById("episodes");
 			results.innerHTML = "";
 			makePageForEpisodes(allEpisodes);
+		
+			dropDownMenu(allEpisodes);
 });
 /*
 
