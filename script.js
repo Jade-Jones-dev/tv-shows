@@ -9,14 +9,169 @@ let seasonNumber;
 let episodeNumber;
 let url = "https://api.tvmaze.com/shows/82/episodes";
 
+const showSearchFunctionEl = document.getElementById("show-search-function");
+const showSearchEl = document.getElementById("shows-search");
+const showsdiv = document.getElementById("shows");
+const showsDropdown = document.getElementById("showDropdown");
+let showsUrl = "https://api.tvmaze.com/shows";
+let allShows = getAllShows();
+
+
+
+// fetching episodes data
 fetch(url)
 	.then((response) => response.json()) //necessary to get json response
-	.then((data) => (allEpisodes = data)); //storing the data in the variable
+	.then((data) => {
+      allEpisodes = data;
+    })
+  .catch (function(error) {
+	console.error(error);
+  })
 
-// initial functions
+  // initial functions
 function setup() {
 	makePageForEpisodes(allEpisodes);
+	dropDownMenu2(allShows);
+
 }
+
+//  fetching show data
+fetch(showsUrl)
+		.then((response) => response.json())
+		.then((data) => {
+			allShows = data;
+			console.log(data);
+			getAllShows();
+		});
+
+/*
+// initial functions
+function setup() {
+	makePageForShows(allShows);
+}
+
+//Functions for shows
+
+
+
+// sort shows
+function compare(a, b) {
+	let aShow = a.name.toLowerCase();
+	let bShow = b.name.toLowerCase();
+	return aShow < bShow ? -1 : 1;
+}
+
+// create cards to display shows
+function makePageForShows(showList) {
+	rootElem.textContent = `${showList.length} shows`;
+
+	showList.sort((a, b) => {
+		let aShow = a.name.toLowerCase();
+		let bShow = b.name.toLowerCase();
+		return aShow < bShow ? -1 : 1;
+	});
+
+	showList.forEach((show) => {
+		
+		let aEl = document.createElement("a");
+		let cardEl = document.createElement("div");
+		let imageEl = document.createElement("img");
+		let titleEl = document.createElement("h2");
+
+		cardEl.className = "show-card";
+		titleEl.className = "title";
+		imageEl.className = "img;";
+
+		cardEl.id = show.id;
+		cardEl.value = show.id;
+		titleEl.innerText = `${show.name}`;
+		imageEl.setAttribute("src", show.image.medium);
+
+		cardEl.append(imageEl, titleEl);
+		aEl.append(cardEl);
+		showsdiv.append(aEl);
+
+		let optionEl = document.createElement("option");
+		optionEl.innerHTML = `${show.name}`;
+		optionEl.value = `${show.id}`;
+		showsDropdown.append(optionEl);
+	});
+}
+
+//adding event listener to search box
+showSearchEl.addEventListener("keyup", searchShows2);
+
+// creating search function
+function searchShows2() {
+	let search = document.getElementById("shows-search").value;
+	const filteredShows = allShows.filter((show) => {
+		return (
+			show.name.toLowerCase().includes(search.toLowerCase()) 
+		);
+	});
+	const results = document.getElementById("shows");
+	results.innerHTML = "";
+	makePageForShows(filteredShows);
+	
+}
+*/
+
+// show dropdown menu
+function dropDownMenu2(showList) {
+// allShows.sort((a, b) => {
+// 	if (a.name.toLowerCase() > b.name.toLowerCase()) {
+// 		return 1;
+// 	} else if (b.name.toLowerCase() > a.name.toLowerCase()) {
+// 		return -1;
+// 	} else {
+// 		return 0;
+// 	}
+// });
+	showList.forEach((show) => {
+		let showoptionEl = document.createElement("option");
+		showoptionEl.innerHTML = `${show.name} `;
+		showoptionEl.value = show.id
+		showsDropdown.append(showoptionEl);
+	});
+}
+
+// next step - fetch the episodes for the selected show with event listener
+showsDropdown.addEventListener("change", function (e) {
+	
+	let selectedShow = e.target.value;
+	console.log(selectedShow);
+	
+	fetch(`https://api.tvmaze.com/shows/${selectedShow}/episodes`)
+		.then((response) => response.json()) //necessary to get json response
+		.then((data) => 
+			allEpisodes = data
+		)
+		console.log(allEpisodes);
+const episodeResults = document.getElementById("episodeDropdown");
+episodeResults.innerHTML = "";
+		// why is it not showing episodes? showing in conols
+
+    	const results = document.getElementById("episodes");
+			results.innerHTML = "";
+			makePageForEpisodes(allEpisodes);
+		
+			dropDownMenu(allEpisodes);
+});
+/*
+
+
+//event listener for show dropdown
+showsDropdown.addEventListener("change", (e) => {
+	const showID = e.target.value;
+	console.log(showID);
+	showsdiv.innerHTML = "";
+	makePageForShows(showID)
+// 	e.target.value === "allShows" ? makePageShows(allShows) : fetching(showID);
+});
+*/
+
+
+// Functions for episodes
 
 // creating the initial cards for episodes
 function makePageForEpisodes(episodeList) {
@@ -54,6 +209,7 @@ function makePageForEpisodes(episodeList) {
 	});
 	// creating the episode list dropdown menu by calling the function
 	dropDownMenu(episodeList);
+	
 }
 
 //adding event listener to search box
