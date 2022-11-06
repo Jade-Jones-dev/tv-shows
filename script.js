@@ -15,7 +15,7 @@ const showsdiv = document.getElementById("shows");
 const showsDropdown = document.getElementById("showDropdown");
 let showsUrl = "https://api.tvmaze.com/shows";
 let allShows = getAllShows();
-let showsList;
+
 
 
 // fetching episodes data
@@ -31,8 +31,10 @@ fetch(url)
   // initial functions
 function setup() {
 	makePageForEpisodes(allEpisodes);
+	dropDownMenu2(allShows);
+
 }
-/*
+
 //  fetching show data
 fetch(showsUrl)
 		.then((response) => response.json())
@@ -41,6 +43,8 @@ fetch(showsUrl)
 			console.log(data);
 			getAllShows();
 		});
+
+/*
 // initial functions
 function setup() {
 	makePageForShows(allShows);
@@ -75,16 +79,16 @@ function compare(a, b) {
 }
 
 // create cards to display shows
-function makePageForShows(showsList) {
-	rootElem.textContent = `${showsList.length} shows`;
+function makePageForShows(showList) {
+	rootElem.textContent = `${showList.length} shows`;
 
-	showsList.sort((a, b) => {
+	showList.sort((a, b) => {
 		let aShow = a.name.toLowerCase();
 		let bShow = b.name.toLowerCase();
 		return aShow < bShow ? -1 : 1;
 	});
 
-	showsList.forEach((show) => {
+	showList.forEach((show) => {
 		
 		let aEl = document.createElement("a");
 		let cardEl = document.createElement("div");
@@ -127,7 +131,25 @@ function searchShows2() {
 	makePageForShows(filteredShows);
 	
 }
+
 */
+
+function dropDownMenu2(showList) {
+	showList.sort((a, b) => {
+		let aShow = a.name.toLowerCase();
+		let bShow = b.name.toLowerCase();
+		return aShow < bShow ? -1 : 1;
+	});
+	showList.forEach((show) => {
+		let showoptionEl = document.createElement("option");
+		showoptionEl.innerHTML = `${show.name} `;
+		showoptionEl.value = show.id;
+		showsDropdown.append(showoptionEl);
+	});
+}
+
+
+
 
 // Functions for episodes
 
@@ -167,6 +189,7 @@ function makePageForEpisodes(episodeList) {
 	});
 	// creating the episode list dropdown menu by calling the function
 	dropDownMenu(episodeList);
+	
 }
 
 //adding event listener to search box
