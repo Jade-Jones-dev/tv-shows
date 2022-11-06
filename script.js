@@ -52,14 +52,7 @@ function setup() {
 
 //Functions for shows
 
-//event listener for show dropdown
-showsDropdown.addEventListener("change", (e) => {
-	const showID = e.target.value;
-	console.log(showID);
-	showsdiv.innerHTML = "";
-	makePageForShows(showID)
-// 	e.target.value === "allShows" ? makePageShows(allShows) : fetching(showID);
-});
+
 
 // sort shows
 function compare(a, b) {
@@ -125,11 +118,11 @@ function searchShows2() {
 
 // show dropdown menu
 function dropDownMenu2(showList) {
-	showList.sort((a, b) => {
-		let aShow = a.name.toLowerCase();
-		let bShow = b.name.toLowerCase();
-		return aShow < bShow ? -1 : 1;
-	});
+showList.sort((a, b) => {
+	let aShow = a.name.toLowerCase();
+	let bShow = b.name.toLowerCase();
+	return aShow < bShow ? -1 : 1;
+});
 	showList.forEach((show) => {
 		let showoptionEl = document.createElement("option");
 		showoptionEl.innerHTML = `${show.name} `;
@@ -139,6 +132,35 @@ function dropDownMenu2(showList) {
 }
 
 // next step - fetch the episodes for the selected show with event listener
+showsDropdown.addEventListener("change", function (e) {
+	let selectedShow = e.target.value;
+	console.log(selectedShow);
+	
+	fetch(`https://api.tvmaze.com/shows/${selectedShow}/episodes`)
+		.then((response) => response.json()) //necessary to get json response
+		.then((data) => 
+			allEpisodes = data
+		)
+		console.log(allEpisodes);
+
+		// why is it not showing episodes? showing in conols
+
+    	const results = document.getElementById("episodes");
+			results.innerHTML = "";
+			makePageForEpisodes(allEpisodes);
+});
+/*
+
+
+//event listener for show dropdown
+showsDropdown.addEventListener("change", (e) => {
+	const showID = e.target.value;
+	console.log(showID);
+	showsdiv.innerHTML = "";
+	makePageForShows(showID)
+// 	e.target.value === "allShows" ? makePageShows(allShows) : fetching(showID);
+});
+*/
 
 
 // Functions for episodes
