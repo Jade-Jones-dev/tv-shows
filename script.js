@@ -30,8 +30,9 @@ fetch(url)
 
   // initial functions
 function setup() {
-	makePageForEpisodes(allEpisodes);
-	dropDownMenu2(allShows);
+	makePageForShows(allShows);
+	// makePageForEpisodes(allEpisodes);
+	// dropDownMenu2(allShows);
 
 }
 
@@ -44,15 +45,9 @@ fetch(showsUrl)
 			getAllShows();
 		});
 
-/*
+
 // initial functions
-function setup() {
-	makePageForShows(allShows);
-}
-
 //Functions for shows
-
-
 
 // sort shows
 function compare(a, b) {
@@ -77,31 +72,75 @@ function makePageForShows(showList) {
 		let cardEl = document.createElement("div");
 		let imageEl = document.createElement("img");
 		let titleEl = document.createElement("h2");
+		let showEl = document.createElement("div");
+		let summaryEl = document.createElement("p")
+
+		let genreEl = document.createElement("h3");
+		let ratingEl = document.createElement("h3");
+		let runtimeEl = document.createElement("h3");
 
 		cardEl.className = "show-card";
 		titleEl.className = "title";
-		imageEl.className = "img;";
+		imageEl.className = "img";
+		showEl.className = "show-details";
+		summaryEl.className = "summary-details";
+
+		genreEl.innerHTML = `Genre: ${show.genres}`;
+		ratingEl.innerHTML = `Show rating: ${show.rating.average}`;
+		runtimeEl.innerHTML = `Episode Runtime: ${show.runtime} minutes`;
+		summaryEl.innerHTML = `${show.summary.substring(0, 200)}...`
 
 		cardEl.id = show.id;
 		cardEl.value = show.id;
+
+		cardEl.addEventListener("click", function (e) {
+	
+			let selectedShow = show.id;
+			console.log(selectedShow);
+		
+			fetch(`https://api.tvmaze.com/shows/${selectedShow}/episodes`)
+			.then((response) => response.json()) //necessary to get json response
+			.then((data) => {
+			  allEpisodes = data;
+			  makePageForEpisodes(allEpisodes);
+			  dropDownMenu(allEpisodes);
+			})
+			  .catch (function(error) {
+				console.error(error);
+			  })
+			console.log(allEpisodes);
+			const episodeResults = document.getElementById("episodeDropdown");
+			episodeResults.innerHTML = "";
+			const results = document.getElementById("shows");
+			results.innerHTML = "";
+					 
+				
+		});
+		
+		
 		titleEl.innerText = `${show.name}`;
 		imageEl.setAttribute("src", show.image.medium);
 
-		cardEl.append(imageEl, titleEl);
+		showEl.append(titleEl, genreEl, ratingEl, runtimeEl)
+		cardEl.append(imageEl, showEl, summaryEl);
 		aEl.append(cardEl);
 		showsdiv.append(aEl);
 
 		let optionEl = document.createElement("option");
-		optionEl.innerHTML = `${show.name}`;
+		optionEl.innerHTML = `${show.name} `;
 		optionEl.value = `${show.id}`;
+		
 		showsDropdown.append(optionEl);
+
+		
 	});
 }
 
-//adding event listener to search box
+
+// working- adding event listener to search box
 showSearchEl.addEventListener("keyup", searchShows2);
 
-// creating search function
+// working- creating search function
 function searchShows2() {
 	let search = document.getElementById("shows-search").value;
 	const filteredShows = allShows.filter((show) => {
@@ -114,66 +153,37 @@ function searchShows2() {
 	makePageForShows(filteredShows);
 	
 }
-*/
 
-// show dropdown menu
-function dropDownMenu2(showList) {
-// allShows.sort((a, b) => {
-// 	if (a.name.toLowerCase() > b.name.toLowerCase()) {
-// 		return 1;
-// 	} else if (b.name.toLowerCase() > a.name.toLowerCase()) {
-// 		return -1;
-// 	} else {
-// 		return 0;
-// 	}
-// });
-	showList.forEach((show) => {
-		let showoptionEl = document.createElement("option");
-		showoptionEl.innerHTML = `${show.name} `;
-		showoptionEl.value = show.id
-		showsDropdown.append(showoptionEl);
-	});
-}
-
-// next step - fetch the episodes for the selected show with event listener
 showsDropdown.addEventListener("change", function (e) {
 	
 	let selectedShow = e.target.value;
 	console.log(selectedShow);
-	
+
 	fetch(`https://api.tvmaze.com/shows/${selectedShow}/episodes`)
-		.then((response) => response.json()) //necessary to get json response
-		.then((data) => 
-			allEpisodes = data
-		)
-		console.log(allEpisodes);
-const episodeResults = document.getElementById("episodeDropdown");
-episodeResults.innerHTML = "";
-		// why is it not showing episodes? showing in conols
-
-    	const results = document.getElementById("episodes");
-			results.innerHTML = "";
-			makePageForEpisodes(allEpisodes);
+	.then((response) => response.json()) //necessary to get json response
+	.then((data) => {
+      allEpisodes = data;
+	  makePageForEpisodes(allEpisodes);
+	  dropDownMenu(allEpisodes);
+    })
+  	.catch (function(error) {
+		console.error(error);
+  	})
+	console.log(allEpisodes);
+	const episodeResults = document.getElementById("episodeDropdown");
+	episodeResults.innerHTML = "";
+	// why is it not showing episodes? showing in conols
+	const results = document.getElementById("shows");
+	results.innerHTML = "";
+			 
 		
-			dropDownMenu(allEpisodes);
 });
-/*
 
-
-//event listener for show dropdown
-showsDropdown.addEventListener("change", (e) => {
-	const showID = e.target.value;
-	console.log(showID);
-	showsdiv.innerHTML = "";
-	makePageForShows(showID)
-// 	e.target.value === "allShows" ? makePageShows(allShows) : fetching(showID);
-});
-*/
 
 
 // Functions for episodes
 
-// creating the initial cards for episodes
+// working- creating the initial cards for episodes
 function makePageForEpisodes(episodeList) {
 	const rootElem = document.getElementById("root");
 	rootElem.textContent = ` ${episodeList.length} episode(s)`;
@@ -212,10 +222,10 @@ function makePageForEpisodes(episodeList) {
 	
 }
 
-//adding event listener to search box
+// working- adding event listener to search box
 search.addEventListener("keyup", searchShows);
 
-// creating search function
+// working- creating search function
 function searchShows() {
 	let search = document.getElementById("search").value;
 	const filteredEpisodes = allEpisodes.filter((episode) => {
@@ -229,7 +239,7 @@ function searchShows() {
 	makePageForEpisodes(filteredEpisodes);
 }
 
-// creating dropdown
+// working- creating dropdown
 function dropDownMenu(episodeList) {
 	episodeList.forEach((episode) => {
 		let optionEl = document.createElement("option");
@@ -250,7 +260,7 @@ function dropDownMenu(episodeList) {
 	});
 }
 
-// adding event listener to the dropdown
+// working- adding event listener to the dropdown
 episodeDropdown.addEventListener("change", function (e) {
 	let selectedEpisode = e.target.value;
 	let matchedEpisode = allEpisodes.filter((episode) => {
