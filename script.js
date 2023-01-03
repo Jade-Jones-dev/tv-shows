@@ -72,10 +72,23 @@ function makePageForShows(showList) {
 		let cardEl = document.createElement("div");
 		let imageEl = document.createElement("img");
 		let titleEl = document.createElement("h2");
+		let showEl = document.createElement("div");
+		let summaryEl = document.createElement("p")
+
+		let genreEl = document.createElement("h3");
+		let ratingEl = document.createElement("h3");
+		let runtimeEl = document.createElement("h3");
 
 		cardEl.className = "show-card";
 		titleEl.className = "title";
 		imageEl.className = "img";
+		showEl.className = "show-details";
+		summaryEl.className = "summary-details";
+
+		genreEl.innerHTML = `Genre: ${show.genres}`;
+		ratingEl.innerHTML = `Show rating: ${show.rating.average}`;
+		runtimeEl.innerHTML = `Episode Runtime: ${show.runtime} minutes`;
+		summaryEl.innerHTML = `${show.summary.substring(0, 200)}...`
 
 		cardEl.id = show.id;
 		cardEl.value = show.id;
@@ -108,11 +121,10 @@ function makePageForShows(showList) {
 		titleEl.innerText = `${show.name}`;
 		imageEl.setAttribute("src", show.image.medium);
 
-		cardEl.append(imageEl, titleEl);
+		showEl.append(titleEl, genreEl, ratingEl, runtimeEl)
+		cardEl.append(imageEl, showEl, summaryEl);
 		aEl.append(cardEl);
 		showsdiv.append(aEl);
-
-
 
 		let optionEl = document.createElement("option");
 		optionEl.innerHTML = `${show.name} `;
@@ -167,45 +179,6 @@ showsDropdown.addEventListener("change", function (e) {
 		
 });
 
-/*
-// notworking- show dropdown menu
-function dropDownMenu2(showList) {
-
-
-// next step - fetch the episodes for the selected show with event listener
-showsDropdown.addEventListener("change", function (e) {
-	
-	let selectedShow = e.target.value;
-	console.log(selectedShow);
-	
-	fetch(`https://api.tvmaze.com/shows/${selectedShow}/episodes`)
-		.then((response) => response.json()) //necessary to get json response
-		.then((data) => 
-			allEpisodes = data
-		)
-		console.log(allEpisodes);
-const episodeResults = document.getElementById("episodeDropdown");
-episodeResults.innerHTML = "";
-		// why is it not showing episodes? showing in conols
-
-    	const results = document.getElementById("episodes");
-			results.innerHTML = "";
-			makePageForEpisodes(allEpisodes);
-		
-			dropDownMenu(allEpisodes);
-});
-
-
-
-//not working- event listener for show dropdown
-showsDropdown.addEventListener("change", (e) => {
-	const showID = e.target.value;
-	console.log(showID);
-	showsdiv.innerHTML = "";
-	makePageForShows(showID)
-// 	e.target.value === "allShows" ? makePageShows(allShows) : fetching(showID);
-});
-*/
 
 
 // Functions for episodes
