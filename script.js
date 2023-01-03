@@ -80,6 +80,29 @@ function makePageForShows(showList) {
 		cardEl.id = show.id;
 		cardEl.value = show.id;
 
+		cardEl.addEventListener("click", function (e) {
+	
+			let selectedShow = show.id;
+			console.log(selectedShow);
+		
+			fetch(`https://api.tvmaze.com/shows/${selectedShow}/episodes`)
+			.then((response) => response.json()) //necessary to get json response
+			.then((data) => {
+			  allEpisodes = data;
+			  makePageForEpisodes(allEpisodes);
+			  dropDownMenu(allEpisodes);
+			})
+			  .catch (function(error) {
+				console.error(error);
+			  })
+			console.log(allEpisodes);
+			const episodeResults = document.getElementById("episodeDropdown");
+			episodeResults.innerHTML = "";
+			const results = document.getElementById("shows");
+			results.innerHTML = "";
+					 
+				
+		});
 		
 		
 		titleEl.innerText = `${show.name}`;
@@ -92,7 +115,7 @@ function makePageForShows(showList) {
 
 
 		let optionEl = document.createElement("option");
-		optionEl.innerHTML = `${show.name} ${show.id}`;
+		optionEl.innerHTML = `${show.name} `;
 		optionEl.value = `${show.id}`;
 		
 		showsDropdown.append(optionEl);
