@@ -1,13 +1,9 @@
-https://cyf-jade-jones-dev-tv.netlify.app
+Link to deployed site: https://cyf-jade-jones-dev-tv.netlify.app.
 
-link to syllabus page https://syllabus.codeyourfuture.io/js-core-3/tv-show-dom-project/
+Vanilla Javascript project using TV Maze API.
 
-# TV Show DOM Project
 
-A starting point for CYF's TV show DOM project
 
-The requirements for the project are here:
 
-https://syllabus.codeyourfuture.io/js-core-3/tv-show-dom-project/readme
 
 
