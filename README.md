@@ -13,11 +13,10 @@ Welcome to the TV Shows repository! This project aims to provide a comprehensive
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
-The TV Shows repository is an open-source project that gathers data on TV shows from various sources, making it a valuable resource for entertainment lovers and developers alike. The project's primary goal is to provide a centralized location for TV show information, enabling users to discover details about their favorite shows or explore new ones.
+The TV Shows repository is an open-source project that gathers data on TV shows from TV Maze API, making it a valuable resource for entertainment lovers and developers alike. The project's primary goal is to provide a centralized location for TV show information, enabling users to discover details about their favorite shows or explore new ones.
 
 ## Features
 
@@ -31,29 +30,6 @@ The TV Shows repository is an open-source project that gathers data on TV shows 
 
 - **Contribution**: As an open-source project, we welcome contributions from the community. If you have data to add or spot any inaccuracies, feel free to submit a pull request.
 
-## Installation
-
-To run the TV Shows repository locally or contribute to it, follow these steps:
-
-1. Clone the repository to your local machine using the following command:
-
-   ```bash
-   git clone https://github.com/Jade-Jones-dev/tv-shows.git
-   ```
-
-2. Install the necessary dependencies by running:
-
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-
-   ```bash
-   npm start
-   ```
-
-4. Access the TV Shows repository through your browser at `http://localhost:3000`.
 
 ## Usage
 
@@ -89,13 +65,7 @@ Contributions to the TV Shows repository are greatly appreciated. If you have an
    git push origin feature/new-feature
    ```
 
-6. Create a pull request from your branch to the `main` branch of this repository.
-
-We'll review your pull request as soon as possible and work with you to incorporate your changes.
-
-## License
-
-The TV Shows repository is licensed under the [MIT License](https://github.com/Jade-Jones-dev/tv-shows/blob/main/LICENSE). Feel free to use, modify, and distribute the code for personal and commercial purposes.
+6. Create a pull request from your branch to the `master` branch of this repository
 
 ---
 
